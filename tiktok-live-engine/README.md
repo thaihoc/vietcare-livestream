@@ -15,6 +15,12 @@ live-engine/
 └─ README.md
 ```
 
+Run socket server:
+
+```bash
+node index.js
+```
+
 Test nhanh:
 
 ```bash
