@@ -3,5 +3,11 @@
 Run dev:
 
 ```bash
-flutter run
+flutter run 
+```
+
+Run window application:
+
+```bash
+flutter run -d windows
 ```

@@ -12,7 +12,7 @@ class PrinterConfigService {
 
   Future<String> getIp() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_ipKey) ?? '192.168.1.50';
+    return prefs.getString(_ipKey) ?? '192.168.119.200';
   }
 
   Future<int> getPort() async {
