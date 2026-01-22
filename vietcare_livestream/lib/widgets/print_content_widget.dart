@@ -32,12 +32,6 @@ class PrintContentWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min, // Giúp Column chỉ chiếm không gian cần thiết
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Dòng gạch ngang (nếu muốn, có thể thay bằng Container với Border)
-          Container(
-            height: 1,
-            color: Colors.black,
-            margin: const EdgeInsets.symmetric(vertical: 4),
-          ),
           Text(
             userId,
             style: const TextStyle(fontSize: 12, color: Colors.black),
@@ -61,7 +55,7 @@ class PrintContentWidget extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            '------------',
+            '---',
             style: const TextStyle(fontSize: 12, color: Colors.black),
             textAlign: TextAlign.center,
           ),
@@ -70,12 +64,7 @@ class PrintContentWidget extends StatelessWidget {
             content != null && content!.isNotEmpty ? content! : '[No Comment]',
             style: const TextStyle(fontSize: 16, color: Colors.black),
             textAlign: TextAlign.left,
-          ),
-          Container(
-            height: 1,
-            color: Colors.black,
-            margin: const EdgeInsets.symmetric(vertical: 4),
-          ),
+          )
         ],
       ),
     );

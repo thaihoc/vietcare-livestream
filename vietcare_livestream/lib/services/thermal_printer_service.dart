@@ -80,7 +80,7 @@ class ThermalPrinterService {
           nickname: nickname,
           time: time,
           content: content,
-          width: 220,
+          width: 250,
         ),
         delay: const Duration(milliseconds: 150),
         pixelRatio: 2.0,
@@ -92,7 +92,6 @@ class ThermalPrinterService {
       }
 
       printer.image(image, align: PosAlign.center);
-      printer.feed(2);
 
       /// RESET MODE (THOÁT RASTER)
       printer.rawBytes(Uint8List.fromList([
@@ -104,7 +103,7 @@ class ThermalPrinterService {
         0x1D, 0x56, 0x41, 0x10, // GS V A 16
       ]));
 
-      /// 5️⃣ DELAY → cho firmware xử lý
+      /// DELAY → cho firmware xử lý
       await Future.delayed(const Duration(milliseconds: 400));
     } finally {
       printer.disconnect();
