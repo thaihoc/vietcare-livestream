@@ -5,7 +5,8 @@ import 'package:esc_pos_printer/esc_pos_printer.dart';
 import 'package:esc_pos_utils/esc_pos_utils.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:vietcare_livestream/widgets/print_content_widget.dart';
-import 'package:image/image.dart' as img; // Đổi tên để tránh xung đột với thư viện Image của Flutter
+import 'package:image/image.dart'
+    as img; // Đổi tên để tránh xung đột với thư viện Image của Flutter
 
 class ThermalPrinterService {
   final String ip;
@@ -73,8 +74,7 @@ class ThermalPrinterService {
     }
 
     try {
-      final Uint8List imageBytes =
-          await screenshotController.captureFromWidget(
+      final Uint8List imageBytes = await screenshotController.captureFromWidget(
         PrintContentWidget(
           userId: userId,
           nickname: nickname,
@@ -94,14 +94,18 @@ class ThermalPrinterService {
       printer.image(image, align: PosAlign.center);
 
       /// RESET MODE (THOÁT RASTER)
-      printer.rawBytes(Uint8List.fromList([
-        0x1B, 0x40, // ESC @
-      ]));
+      printer.rawBytes(
+        Uint8List.fromList([
+          0x1B, 0x40, // ESC @
+        ]),
+      );
 
       /// CUT CHUẨN HPRT
-      printer.rawBytes(Uint8List.fromList([
-        0x1D, 0x56, 0x41, 0x10, // GS V A 16
-      ]));
+      printer.rawBytes(
+        Uint8List.fromList([
+          0x1D, 0x56, 0x41, 0x10, // GS V A 16
+        ]),
+      );
 
       /// DELAY → cho firmware xử lý
       await Future.delayed(const Duration(milliseconds: 400));
@@ -109,6 +113,4 @@ class ThermalPrinterService {
       printer.disconnect();
     }
   }
-
-
 }

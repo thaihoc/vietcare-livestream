@@ -32,6 +32,8 @@ class _PrinterConfigScreenState extends State<PrinterConfigScreen> {
       port: int.parse(portController.text),
     );
 
+    if (!mounted) return;
+
     ScaffoldMessenger.of(
       context,
     ).showSnackBar(const SnackBar(content: Text('✅ Đã lưu cấu hình')));
@@ -45,6 +47,8 @@ class _PrinterConfigScreenState extends State<PrinterConfigScreen> {
       );
 
       await printer.testPrint();
+
+      if (!mounted) return;
 
       ScaffoldMessenger.of(
         context,
