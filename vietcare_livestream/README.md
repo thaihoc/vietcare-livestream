@@ -23,3 +23,9 @@ flutter build windows
 ```
 
 App build ra tại thư mục: `\build\windows\x64\runner\Release\vietcare_livestream.exe`.
+
+Build MacOS app:
+
+```bash
+flutter build macos --release
+```
