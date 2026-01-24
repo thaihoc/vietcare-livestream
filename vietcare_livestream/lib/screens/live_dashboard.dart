@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:vietcare_livestream/screens/start_screen.dart';
 import 'package:vietcare_livestream/services/config_service.dart';
 import 'package:vietcare_livestream/services/thermal_printer_service.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 import '../models/live_event.dart';
 import '../models/user_stats.dart';
 import '../models/socket_event.dart';
@@ -70,6 +71,8 @@ class _LiveDashboardState extends State<LiveDashboard>
     super.initState();
 
     WidgetsBinding.instance.addObserver(this);
+
+    WakelockPlus.enable();
 
     initPrinter();
     tabController = TabController(length: 2, vsync: this);
@@ -142,6 +145,7 @@ class _LiveDashboardState extends State<LiveDashboard>
     WidgetsBinding.instance.removeObserver(this);
     tabController.dispose();
     _socketSub?.cancel();
+    WakelockPlus.disable();
     super.dispose();
   }
 
