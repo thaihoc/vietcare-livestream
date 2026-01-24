@@ -106,6 +106,8 @@ class _LiveDashboardState extends State<LiveDashboard>
       );
       if(!mounted) return;
 
+      if (!mounted) return;
+
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text('🖨️ In thành công')));
