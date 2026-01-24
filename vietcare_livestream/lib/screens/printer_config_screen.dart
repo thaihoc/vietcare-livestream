@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../services/printer_config_service.dart';
+import '../services/config_service.dart';
 import '../services/thermal_printer_service.dart';
 
 class PrinterConfigScreen extends StatefulWidget {
@@ -13,7 +13,7 @@ class _PrinterConfigScreenState extends State<PrinterConfigScreen> {
   final ipController = TextEditingController();
   final portController = TextEditingController(text: '9100');
 
-  final configService = PrinterConfigService();
+  final configService = ConfigService();
 
   @override
   void initState() {
@@ -22,12 +22,12 @@ class _PrinterConfigScreenState extends State<PrinterConfigScreen> {
   }
 
   Future<void> loadConfig() async {
-    ipController.text = await configService.getIp();
-    portController.text = (await configService.getPort()).toString();
+    ipController.text = await configService.getPrinterIp();
+    portController.text = (await configService.getPrinterPort()).toString();
   }
 
   Future<void> saveConfig() async {
-    await configService.save(
+    await configService.savePrinterConfig(
       ip: ipController.text.trim(),
       port: int.parse(portController.text),
     );

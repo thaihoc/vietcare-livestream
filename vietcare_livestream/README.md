@@ -23,3 +23,11 @@ flutter build windows
 ```
 
 App build ra tại thư mục: `\build\windows\x64\runner\Release\vietcare_livestream.exe`.
+
+Build Android app:
+
+```bash
+flutter build apk --release
+```
+
+App build ra tại thư mục: `build/app/outputs/flutter-apk/app-release.apk`

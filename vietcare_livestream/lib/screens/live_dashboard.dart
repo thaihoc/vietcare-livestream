@@ -1,6 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:vietcare_livestream/screens/start_screen.dart';
-import 'package:vietcare_livestream/services/printer_config_service.dart';
+import 'package:vietcare_livestream/services/config_service.dart';
 import 'package:vietcare_livestream/services/thermal_printer_service.dart';
 import '../models/live_event.dart';
 import '../models/user_stats.dart';
@@ -9,12 +11,18 @@ import '../services/live_socket_service.dart';
 
 class LiveDashboard extends StatefulWidget {
   final LiveSocketService socket;
-  final String username;
+  final String tiktokUsername;
+  final String printerIP;
+  final int printerPort;
+  
+
 
   const LiveDashboard({
     super.key,
     required this.socket,
-    required this.username,
+    required this.tiktokUsername,
+    required this.printerIP,
+    required this.printerPort,
   });
 
   @override
@@ -22,18 +30,20 @@ class LiveDashboard extends StatefulWidget {
 }
 
 class _LiveDashboardState extends State<LiveDashboard>
-    with SingleTickerProviderStateMixin {
-  late TabController tabController;
+    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
 
-  final config = PrinterConfigService();
+  late TabController tabController;
+  StreamSubscription<LiveEvent>? _socketSub;
+
+  final config = ConfigService();
   ThermalPrinterService? printerService;
 
   final List<LiveEvent> comments = [];
   final Map<String, UserStats> userStats = {};
 
   Future<void> initPrinter() async {
-    final ip = await config.getIp();
-    final port = await config.getPort();
+    final ip = await config.getPrinterIp();
+    final port = await config.getPrinterPort();
 
     setState(() {
       printerService = ThermalPrinterService(ip: ip, port: port);
@@ -41,16 +51,34 @@ class _LiveDashboardState extends State<LiveDashboard>
   }
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    debugPrint('APP STATE: $state');
+
+    if (state == AppLifecycleState.resumed) {
+      widget.socket.reconnect();
+    }
+
+    if (state == AppLifecycleState.paused) {
+      widget.socket.close();
+    }
+  }
+
+
+
+  @override
   void initState() {
     super.initState();
+
+    WidgetsBinding.instance.addObserver(this);
+
     initPrinter();
     tabController = TabController(length: 2, vsync: this);
 
-    widget.socket.eventStream.listen(handleEvent);
+    _socketSub = widget.socket.eventStream.listen(handleEvent);
   }
 
   void stopLive() {
-    widget.socket.stopLive(widget.username);
+    widget.socket.stopLive();
 
     Navigator.pushReplacement(
       context,
@@ -73,6 +101,7 @@ class _LiveDashboardState extends State<LiveDashboard>
         time: event.time,
         content: event.comment,
       );
+      if(!mounted) return;
 
       ScaffoldMessenger.of(
         context,
@@ -110,7 +139,9 @@ class _LiveDashboardState extends State<LiveDashboard>
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     tabController.dispose();
+    _socketSub?.cancel();
     super.dispose();
   }
 
@@ -118,7 +149,7 @@ class _LiveDashboardState extends State<LiveDashboard>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Live: ${widget.username}'),
+        title: Text('Live: ${widget.tiktokUsername}'),
         bottom: TabBar(
           controller: tabController,
           tabs: const [
