@@ -1,9 +1,10 @@
 // print_content_widget.dart (hoặc đặt nó ở đâu đó phù hợp)
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // Để định dạng thời gian
+import 'package:intl/intl.dart';
+import 'package:vietcare_livestream/widgets/dashed_line.dart'; // Để định dạng thời gian
 
 class PrintContentWidget extends StatelessWidget {
-  final String userId;
+  final String uniqueId;
   final String nickname;
   final DateTime time;
   final String? content;
@@ -11,11 +12,11 @@ class PrintContentWidget extends StatelessWidget {
 
   const PrintContentWidget({
     super.key,
-    required this.userId,
+    required this.uniqueId,
     required this.nickname,
     required this.time,
     this.content,
-    this.width = 300, // Giá trị này sẽ cần điều chỉnh tùy theo máy in 80mm hay 58mm
+    this.width = 280, // Giá trị này sẽ cần điều chỉnh tùy theo máy in 80mm hay 58mm
   });
 
   String _formatTime(DateTime time) {
@@ -33,8 +34,8 @@ class PrintContentWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            userId,
-            style: const TextStyle(fontSize: 12, color: Colors.black),
+            uniqueId,
+            style: const TextStyle(fontSize: 14, color: Colors.black),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 4),
@@ -50,21 +51,16 @@ class PrintContentWidget extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             _formatTime(time),
-            style: const TextStyle(fontSize: 14, color: Colors.black),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 4),
-          Text(
-            '---',
             style: const TextStyle(fontSize: 12, color: Colors.black),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 12),
           Text(
             content != null && content!.isNotEmpty ? content! : '[No Comment]',
             style: const TextStyle(fontSize: 16, color: Colors.black),
             textAlign: TextAlign.left,
-          )
+          ),
+          const SizedBox(height: 16),
         ],
       ),
     );

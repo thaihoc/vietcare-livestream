@@ -64,8 +64,6 @@ class _LiveDashboardState extends State<LiveDashboard>
     }
   }
 
-
-
   @override
   void initState() {
     super.initState();
@@ -99,7 +97,7 @@ class _LiveDashboardState extends State<LiveDashboard>
 
     try {
       await printerService!.printComment(
-        userId: event.userId,
+        uniqueId: event.uniqueId,
         nickname: event.nickname,
         time: event.time,
         content: event.comment,
@@ -109,13 +107,13 @@ class _LiveDashboardState extends State<LiveDashboard>
       if (!mounted) return;
 
       ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('🖨️ In thành công')));
-    } catch (e) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('❌ Lỗi in: $e')));
-    }
+          context,
+        ).showSnackBar(const SnackBar(content: Text('🖨️ In thành công')));
+      } catch (e) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('❌ Lỗi in: $e')));
+      }
   }
 
   void handleEvent(LiveEvent event) {
@@ -211,7 +209,7 @@ class _LiveDashboardState extends State<LiveDashboard>
               icon: const Icon(Icons.print),
               onPressed: () {
                 printerService!.printComment(
-                  userId: c.userId,
+                  uniqueId: c.uniqueId,
                   nickname: c.nickname,
                   time: c.time,
                   content: c.comment,

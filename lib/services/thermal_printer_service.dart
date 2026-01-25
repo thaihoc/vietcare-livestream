@@ -58,7 +58,7 @@ class ThermalPrinterService {
   }
 
   Future<void> printComment({
-    required String userId,
+    required String uniqueId,
     required String nickname,
     required DateTime time,
     String? content,
@@ -76,11 +76,11 @@ class ThermalPrinterService {
     try {
       final Uint8List imageBytes = await screenshotController.captureFromWidget(
         PrintContentWidget(
-          userId: userId,
+          uniqueId: uniqueId,
           nickname: nickname,
           time: time,
           content: content,
-          width: 250,
+          width: 280,
         ),
         delay: const Duration(milliseconds: 150),
         pixelRatio: 2.0,
@@ -108,7 +108,7 @@ class ThermalPrinterService {
       );
 
       /// DELAY → cho firmware xử lý
-      await Future.delayed(const Duration(milliseconds: 400));
+      await Future.delayed(const Duration(milliseconds: 200));
     } finally {
       printer.disconnect();
     }

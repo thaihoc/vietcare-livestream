@@ -2,6 +2,7 @@ import 'socket_event.dart';
 
 class LiveEvent {
   final String userId;
+  final String uniqueId;
   final String nickname;
   final SocketEventType type;
   final String? comment;
@@ -11,6 +12,7 @@ class LiveEvent {
 
   LiveEvent({
     required this.userId,
+    required this.uniqueId,
     required this.nickname,
     required this.type,
     this.comment,
@@ -24,6 +26,7 @@ class LiveEvent {
 
     return LiveEvent(
       userId: json['userId'],
+      uniqueId: json['uniqueId'],
       nickname: json['nickname'] ?? json['text'],
       type: type,
       comment: json['comment'],
