@@ -1,7 +1,39 @@
-# Nth Tiktok Live Comment
+# Vietcare Livestream
 
-Ứng dụng hỗ trợ streamer bán hàng với các tính năng xem lượt share, like và in comment.
+Ứng dụng hỗ trợ streamer bán hàng với các tính năng xem lượt share, like và in comment. Ứng dụng còn cho phép xem lại danh sách các comment chốt đơn theo từng khách hàng, đánh dấu các khách hàng nào đã xác nhận đơn, đã đi đơn, đã nhận hàng, bom hàng, ...
 
-Ứng dụng có có 2 thành phần chính: 
-* Tiktok Live Engine: là thành phần backend, được phát triển bằng NodeJS để kết nối với các phiên live từ Tiktok, lấy thông tin trong phiên live (comment, share, like, ...) và cung cấp dữ liệu cho frontend thông qua Websocket.
-* Vietcare Livestream: là thành phần frontend để hiển thị cho phép in các comment trong phiên like, hiển thị danh sách người xem phiên livestream cùng với số lần share và like.
+## Build app icon
+
+```bash
+flutter pub run flutter_launcher_icons -f flutter_launcher_icons.yaml
+```
+
+## Run dev
+
+```bash
+flutter run 
+```
+
+Run window application:
+
+```bash
+flutter run -d windows
+```
+
+## Build release
+
+Build window app:
+
+```bash
+flutter build windows
+```
+
+App build ra tại thư mục: `\build\windows\x64\runner\Release\vietcare_livestream.exe`.
+
+Build Android app:
+
+```bash
+flutter build apk --release
+```
+
+App build ra tại thư mục: `build/app/outputs/flutter-apk/app-release.apk`

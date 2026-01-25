@@ -7,83 +7,83 @@ Thumbs.db
 .idea/
 .vscode/
 *.iml
-
-# =================
-# Node
-# =================
-tiktok-live-engine/node_modules/
-tiktok-live-engine/npm-debug.log*
-tiktok-live-engine/yarn-debug.log*
-tiktok-live-engine/yarn-error.log*
-
-# Env
-tiktok-live-engine/.env
-tiktok-live-engine/.env.local
-
-# Build
-tiktok-live-engine/dist/
-tiktok-live-engine/build/
-
-# OS
-tiktok-live-engine/.DS_Store
-
-# ================= 
-# Flutter
-# ================= 
-
+*.ipr
+*.iws
 
 # Flutter / Dart
-vietcare_livestream/.dart_tool/
-vietcare_livestream/.packages
-vietcare_livestream/.pub/
-vietcare_livestream/build/
+.dart_tool/
+.packages
+.pub/
+build/
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.flutter-plugins-dependencies
+.pub-cache/
+coverage/
 
 # Generated files
-vietcare_livestream/.flutter-plugins
-vietcare_livestream/.flutter-plugins-dependencies
-vietcare_livestream/.metadata
+.flutter-plugins
+.flutter-plugins-dependencies
+.metadata
 
 # IDE
-vietcare_livestream/.idea/
-vietcare_livestream/.vscode/
-vietcare_livestream/*.iml
+.idea/
+.vscode/
+*.iml
 
 # Android
-vietcare_livestream/android/.gradle/
-vietcare_livestream/android/local.properties
-vietcare_livestream/android/key.properties
-vietcare_livestream/android/**/GeneratedPluginRegistrant.java
-
-# Build outputs
-vietcare_livestream/android/app/build/
+android/.gradle/
+android/local.properties
+android/key.properties
+android/**/GeneratedPluginRegistrant.java
+android/app/debug
+android/app/profile
+android/app/release
+android/app/generated
+android/app/build/
 
 # iOS / macOS
-vietcare_livestream/ios/Pods/
-vietcare_livestream/ios/.symlinks/
-vietcare_livestream/ios/Flutter/ephemeral/
-vietcare_livestream/ios/Flutter/Generated.xcconfig
-vietcare_livestream/ios/Flutter/flutter_export_environment.sh
-vietcare_livestream/ios/Runner.xcworkspace/
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/ephemeral/
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+ios/Runner.xcworkspace/
 
-vietcare_livestream/macos/Pods/
-vietcare_livestream/macos/Flutter/ephemeral/
+macos/Pods/
+macos/Flutter/ephemeral/
 
 # Web
-vietcare_livestream/web/.dart_tool/
-vietcare_livestream/web/build/
+web/.dart_tool/
+web/build/
 
 # Linux / Windows
-vietcare_livestream/linux/flutter/ephemeral/
-vietcare_livestream/windows/flutter/ephemeral/
+linux/flutter/ephemeral/
+windows/flutter/ephemeral/
 
-# Logs & OS
-vietcare_livestream/*.log
-vietcare_livestream/.DS_Store
-vietcare_livestream/Thumbs.db
 
 # Env / Secrets
-.vietcare_livestream.env
-.vietcare_livestream.env.*
+.env
+.env.*
 
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
 
 
