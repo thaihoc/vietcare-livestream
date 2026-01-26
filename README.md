@@ -1,4 +1,4 @@
-# Vietcare Livestream
+# Danuma Livestream
 
 Ứng dụng hỗ trợ streamer bán hàng với các tính năng xem lượt share, like và in comment. Ứng dụng còn cho phép xem lại danh sách các comment chốt đơn theo từng khách hàng, đánh dấu các khách hàng nào đã xác nhận đơn, đã đi đơn, đã nhận hàng, bom hàng, ...
 
